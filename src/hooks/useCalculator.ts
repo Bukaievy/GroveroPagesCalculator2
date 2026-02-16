@@ -22,16 +22,16 @@ const DEFAULT_PURCHASE_PRICE = 2290;
 const MIN_COVERAGE_BEST_PAYBACK = 0.7;
 
 const PRESETS = {
-  typical: { waste: 15, minutes: 30 },
+  typical: { waste: 25, minutes: 20 },
   low_waste: { waste: 10, minutes: 20 },
-  high_waste: { waste: 25, minutes: 30 },
+  high_waste: { waste: 35, minutes: 30 },
 };
 
 const DEFAULT_INPUTS: CalculatorInputs = {
   weeklySpend: 120,
   preset: 'typical',
-  wastePercent: 15,
-  minutesPerWeekPerUnit: 30,
+  wastePercent: 25,
+  minutesPerWeekPerUnit: 20,
   labourCostPerHour: 25,
   electricityPerMonthPerUnit: 4,
   carePlanOn: true,
