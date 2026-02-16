@@ -25,24 +25,21 @@ export function ResultsCard({
   const paybackDisplay = (() => {
     if (results.roiMonths !== null) {
       const rounded = Math.round(results.roiMonths * 2) / 2;
-
       if (rounded < 1) return t('results.paybackLessThan1');
 
-      const label =
-        rounded === 1 ? t('results.month') : t('results.months');
-
-      return `${rounded} ${label}`;
+      const label = rounded === 1 ? t('results.month') : t('results.months');
+      // Prefer locale formatting from hook if it exists
+      const n = typeof formatPaybackMonths === 'function' ? formatPaybackMonths(rounded) : String(rounded);
+      return `${n} ${label}`;
     }
-
     return t('results.noPayback');
   })();
 
-  const unitsText = isOverride
+  const unitsLine = isOverride
     ? t('results.unitsManualLine').replace('{units}', String(unitsModeled))
     : t('results.unitsLine').replace('{units}', String(unitsModeled));
 
-  const lowCoverage =
-    recommendationMode === 'best_payback' && results.coverage < 0.7;
+  const lowCoverage = recommendationMode === 'best_payback' && results.coverage < 0.7;
 
   return (
     <div className="space-y-6">
@@ -59,18 +56,12 @@ export function ResultsCard({
           <div>
             {t('results.payback')}: <span className="font-semibold">{paybackDisplay}</span>
           </div>
-          <div>
-            {unitsText}
-          </div>
+          <div>{unitsLine}</div>
           <div className="text-xs text-muted-foreground">
             {t('results.coverage').replace('{coverage}', formatPercent(results.coverage))}
           </div>
 
-          {lowCoverage && (
-            <div className="text-xs text-amber-600">
-              {t('results.lowCoverageHint')}
-            </div>
-          )}
+          {lowCoverage && <div className="text-xs text-amber-600">{t('results.lowCoverageHint')}</div>}
         </div>
       </div>
 
@@ -80,9 +71,7 @@ export function ResultsCard({
           <button
             onClick={() => setRecommendationMode('best_payback')}
             className={`flex-1 py-2 rounded-md ${
-              recommendationMode === 'best_payback'
-                ? 'bg-background shadow-sm font-medium'
-                : 'text-muted-foreground'
+              recommendationMode === 'best_payback' ? 'bg-background shadow-sm font-medium' : 'text-muted-foreground'
             }`}
           >
             {t('results.modeBestPayback')}
@@ -91,9 +80,7 @@ export function ResultsCard({
           <button
             onClick={() => setRecommendationMode('full_coverage')}
             className={`flex-1 py-2 rounded-md ${
-              recommendationMode === 'full_coverage'
-                ? 'bg-background shadow-sm font-medium'
-                : 'text-muted-foreground'
+              recommendationMode === 'full_coverage' ? 'bg-background shadow-sm font-medium' : 'text-muted-foreground'
             }`}
           >
             {t('results.modeFullCoverage')}
@@ -101,9 +88,7 @@ export function ResultsCard({
         </div>
 
         <div className="text-xs text-muted-foreground">
-          {recommendationMode === 'best_payback'
-            ? t('results.modeBestPaybackDesc')
-            : t('results.modeFullCoverageDesc')}
+          {recommendationMode === 'best_payback' ? t('results.modeBestPaybackDesc') : t('results.modeFullCoverageDesc')}
         </div>
       </div>
 
@@ -135,8 +120,7 @@ export function ResultsCard({
 
         <div className="bg-muted rounded-lg p-4">
           <div className="text-xs text-muted-foreground">
-            {t('results.operatingCostForUnits')
-              .replace('{units}', String(unitsModeled))}
+            {t('results.operatingCostForUnits').replace('{units}', String(unitsModeled))}
           </div>
           <div className="font-semibold">{formatCurrency(results.operatingCostPerMonth, false)}</div>
         </div>
@@ -153,20 +137,33 @@ export function ResultsCard({
 
         {showDetails && (
           <div className="mt-4 text-sm text-muted-foreground space-y-2">
+            {/* Keep current breakdown */}
+            <div>{t('results.replacesValue').replace('{value}', formatCurrency(results.maxReplacedValue, false))}</div>
             <div>
-              {t('results.replacesValue')
-                .replace('{value}', formatCurrency(results.maxReplacedValue, false))}
+              {t('results.carePlan')}: {formatCurrency(results.carePlanCostTotal, false)}
+            </div>
+            <div>
+              {t('results.electricity')}: {formatCurrency(results.electricityCostTotal, false)}
+            </div>
+            <div>
+              {t('results.labour')}: {formatCurrency(results.labourCostTotal, false)}
             </div>
 
-            <div>{t('results.carePlan')}: {formatCurrency(results.carePlanCostTotal, false)}</div>
-            <div>{t('results.electricity')}: {formatCurrency(results.electricityCostTotal, false)}</div>
-            <div>{t('results.labour')}: {formatCurrency(results.labourCostTotal, false)}</div>
+            {/* Add: How we calculate */}
+            <div className="pt-3 mt-3 border-t text-xs text-muted-foreground space-y-1">
+              <div>{t('calc.paidPerMonth')}</div>
+              <div>{t('calc.usedValue')}</div>
+              <div>{t('calc.capacity')}</div>
+              <div>{t('calc.proportionalAvoided')}</div>
+              <div>{t('calc.operatingCost')}</div>
+            </div>
           </div>
         )}
       </div>
 
       <div className="text-xs text-muted-foreground">
-        {t('results.footerVat')}<br />
+        {t('results.footerVat')}
+        <br />
         {t('results.footerEstimate')}
       </div>
     </div>
