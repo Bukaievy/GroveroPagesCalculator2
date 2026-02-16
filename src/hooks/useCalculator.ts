@@ -15,27 +15,6 @@ interface CalculatorInputs {
   purchasePricePerUnit: number;
 }
 
-export interface CalculatorResults {
-  paidSpendPerMonth: number;
-  usedValuePerMonth: number;
-  unitsRecommended: number;
-  unitsFull: number;
-  unitsBestPayback: number;
-  maxReplacedValue: number;
-  avoidedSpend: number;
-  operatingCostPerMonth: number;
-  carePlanCostTotal: number;
-  electricityCostTotal: number;
-  labourCostTotal: number;
-  savingsPerMonth: number;
-  savingsPerYear: number;
-  capexTotal: number;
-  roiMonths: number | null;
-  isPositiveRoi: boolean;
-  coverage: number;
-  spareCapacityValue: number;
-}
-
 const WEEKS_PER_MONTH = 4.33;
 const UNIT_CAPACITY = 400;
 const CARE_PLAN_COST = 60;
@@ -187,14 +166,10 @@ export function useCalculator() {
       maxReplacedValue: replaced,
       avoidedSpend: avoided,
       operatingCostPerMonth,
-      carePlanCostTotal: units * planCostPerUnit,
-      electricityCostTotal: units * electricityCostPerUnit,
-      labourCostTotal: units * labourCostPerUnit,
       savingsPerMonth,
       savingsPerYear: savingsPerMonth * 12,
       capexTotal,
       roiMonths,
-      isPositiveRoi: savingsPerMonth > 0,
       coverage:
         usedValuePerMonth > 0
           ? replaced / usedValuePerMonth
@@ -240,5 +215,7 @@ export function useCalculator() {
     recommendationMode,
     setRecommendationMode,
     unitsModeled,
+    effectiveWaste,
+    effectiveMinutes,
   };
 }
