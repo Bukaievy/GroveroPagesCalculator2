@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Grovero Design System - Premium, Minimal, Purple */
+
+@layer base {
+  :root {
+    /* Core palette */
+    --background: 0 0% 99%;
+    --foreground: 220 20% 14%;
+
+    /* Cards with soft elevation */
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 14%;
+    --card-shadow: 0 4px 24px -4px hsl(220 20% 14% / 0.06);
+    --card-shadow-lg: 0 8px 40px -8px hsl(220 20% 14% / 0.1);
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 14%;
+
+    /* Grovero Purple - Primary brand */
+    --primary: 254 84% 65%;
+    --primary-hover: 254 84% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Light purple tint */
+    --secondary: 254 40% 96%;
+    --secondary-foreground: 254 84% 45%;
+
+    /* Muted - Soft grays */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    /* Accent - Purple highlight */
+    --accent: 254 50% 94%;
+    --accent-foreground: 254 84% 50%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 254 84% 65%;
+
+    --radius: 0.75rem;
+
+    /* ROI highlight */
+    --highlight: 254 84% 65%;
+    --highlight-bg: 254 84% 97%;
+
+    /* Success green for positive savings */
+    --success: 152 69% 40%;
+    --success-bg: 152 69% 96%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 254 84% 65%;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 0 0% 98%;
+    --card-shadow: 0 4px 24px -4px hsl(0 0% 0% / 0.3);
+    --card-shadow-lg: 0 8px 40px -8px hsl(0 0% 0% / 0.4);
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 254 84% 68%;
+    --primary-hover: 254 84% 72%;
+    --primary-foreground: 220 20% 8%;
+
+    --secondary: 254 30% 18%;
+    --secondary-foreground: 254 84% 75%;
+
+    --muted: 220 16% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 254 30% 20%;
+    --accent-foreground: 254 84% 75%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 16% 22%;
+    --input: 220 16% 22%;
+    --ring: 254 84% 68%;
+
+    --highlight: 254 84% 68%;
+    --highlight-bg: 254 40% 15%;
+
+    --success: 152 69% 50%;
+    --success-bg: 152 40% 15%;
+
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 254 76.3% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 16% 16%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 220 16% 22%;
+    --sidebar-ring: 254 84% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border;
+    box-shadow: var(--card-shadow);
+  }
+
+  .card-elevated-lg {
+    @apply bg-card rounded-2xl border border-border;
+    box-shadow: var(--card-shadow-lg);
+  }
+
+  .results-highlight {
+    @apply bg-[hsl(var(--highlight-bg))] rounded-xl p-6 border-2 border-[hsl(var(--highlight))];
+  }
+
+  .savings-positive {
+    @apply bg-[hsl(var(--success-bg))] text-[hsl(var(--success))];
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground 
+           placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring 
+           focus:border-transparent transition-all duration-200;
+  }
+
+  .input-locked {
+    @apply bg-muted text-muted-foreground cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg 
+           bg-primary text-primary-foreground font-semibold 
+           hover:bg-[hsl(var(--primary-hover))] transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg 
+           border-2 border-border bg-transparent text-foreground font-semibold 
+           hover:bg-muted transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+           text-muted-foreground font-medium hover:text-foreground hover:bg-muted 
+           transition-all duration-200;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
