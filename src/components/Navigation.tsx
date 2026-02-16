@@ -18,11 +18,12 @@ export function Navigation() {
       <div className="section-container">
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg md:text-xl">G</span>
-            </div>
-            <span className="text-xl md:text-2xl font-bold text-foreground">Grovero</span>
+          <a href="/" className="flex items-center">
+            <img
+              src="/logo-grovero.svg"
+              alt="Grovero"
+              className="h-8 md:h-10 w-auto"
+            />
           </a>
 
           {/* Right side */}
