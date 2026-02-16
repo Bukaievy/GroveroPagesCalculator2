@@ -10,22 +10,16 @@ interface LanguageContextType {
 
 const translations: Record<Language, Record<string, string>> = {
   en: {
-    // NAV
     'nav.bookCall': 'Book a call',
     'nav.savingsGuide': 'Get the savings guide',
-
-    // CTA
     'cta.bookCall': 'Book a call',
     'cta.savingsGuide': 'Get the savings guide',
 
-    // HERO
     'hero.title': 'Estimate your savings with MiniGro',
     'hero.subtitle': 'Estimate your monthly savings in 60 seconds.',
 
-    // DISCLAIMER
     'disclaimer': 'Estimate only. Results depend on usage and purchasing patterns.',
 
-    // INPUTS
     'inputs.blockA.title': 'Current spend',
     'inputs.weeklySpend': 'Weekly microgreens spend (€)',
     'inputs.weeklySpendHelper': 'What you pay on invoices (average week).',
@@ -67,18 +61,18 @@ const translations: Record<Language, Record<string, string>> = {
     'inputs.purchasePrice': 'MiniGro purchase price (€/unit)',
     'inputs.reset': 'Reset to defaults',
 
-    // RESULTS (shared)
     'results.netSavings': 'Net savings',
     'results.perMonth': '/ month',
     'results.payback': 'Payback',
+    'results.month': 'month',
+    'results.months': 'months',
     'results.noPayback': 'No payback',
     'results.paybackLessThan1': '< 1 month',
-    'results.paybackValue': '{months}',
+
     'results.unitsNeeded': 'MiniGros needed',
     'results.unitsLine': 'Units: {units} MiniGros',
     'results.unitsManualLine': 'Units: {units} MiniGros (manual)',
     'results.coverage': 'Coverage: {coverage}',
-  
 
     'results.modeBestPayback': 'Best payback',
     'results.modeFullCoverage': 'Full coverage',
@@ -88,7 +82,6 @@ const translations: Record<Language, Record<string, string>> = {
 
     'results.youPayPerMonth': 'You pay per month',
     'results.youUseAfterWaste': 'You actually use (after waste)',
-    'results.operatingCost': 'Monthly operating cost',
     'results.operatingCostForUnits': 'Monthly operating cost (for {units} units)',
     'results.weeklyTimes433': 'Weekly spend × 4.33',
 
@@ -101,17 +94,19 @@ const translations: Record<Language, Record<string, string>> = {
     'results.footerVat': 'All amounts exclude VAT.',
     'results.footerEstimate': 'Estimates depend on crop mix and kitchen workflow.',
 
-    'results.month': 'month',
-    'results.months': 'months',
+    // How we calculate (new)
+    'calc.paidPerMonth': 'Paid per month = weekly spend × 4.33',
+    'calc.usedValue': 'Used value = paid × (1 − waste)',
+    'calc.capacity': 'Each unit replaces up to €400/month of used value',
+    'calc.proportionalAvoided': 'Avoided spend is proportional to what you replace (based on used value)',
+    'calc.operatingCost': 'Operating cost = care plan + electricity + labour',
 
-    // TESTIMONIALS
     'testimonials.title': 'What chefs say',
     'testimonial.1': '“We order less and hardly throw anything away anymore. That’s where the cost difference comes from.”',
     'testimonial.1.author': 'Restaurant owner (Amsterdam)',
     'testimonial.2': '“Harvesting on demand makes service easier. We always have what we need, without waste orders.”',
     'testimonial.2.author': 'Chef (The Hague)',
 
-    // FOOTER
     'footer.privacy': 'Privacy',
     'footer.terms': 'Terms',
   },
@@ -119,7 +114,6 @@ const translations: Record<Language, Record<string, string>> = {
   nl: {
     'nav.bookCall': 'Plan een call',
     'nav.savingsGuide': 'Download de besparingsgids',
-
     'cta.bookCall': 'Plan een call',
     'cta.savingsGuide': 'Download de besparingsgids',
 
@@ -172,9 +166,11 @@ const translations: Record<Language, Record<string, string>> = {
     'results.netSavings': 'Netto besparing',
     'results.perMonth': '/ maand',
     'results.payback': 'Terugverdientijd',
+    'results.month': 'maand',
+    'results.months': 'maanden',
     'results.noPayback': 'Geen terugverdientijd',
     'results.paybackLessThan1': '< 1 maand',
-    'results.paybackValue': '{months}',
+
     'results.unitsNeeded': 'MiniGros nodig',
     'results.unitsLine': 'Units: {units} MiniGros',
     'results.unitsManualLine': 'Units: {units} MiniGros (handmatig)',
@@ -188,10 +184,8 @@ const translations: Record<Language, Record<string, string>> = {
 
     'results.youPayPerMonth': 'Je betaalt per maand',
     'results.youUseAfterWaste': 'Je gebruikt daadwerkelijk (na waste)',
-    'results.operatingCost': 'Maandelijkse kosten',
     'results.operatingCostForUnits': 'Maandelijkse kosten (voor {units} units)',
     'results.weeklyTimes433': 'Wekelijkse uitgaven × 4,33',
-  
 
     'results.details': 'Details',
     'results.replacesValue': 'Vervangt {value} van je huidige gebruik.',
@@ -202,8 +196,11 @@ const translations: Record<Language, Record<string, string>> = {
     'results.footerVat': 'Alle bedragen zijn excl. btw.',
     'results.footerEstimate': 'Schattingen hangen af van teeltmix en keukenworkflow.',
 
-    'results.month': 'maand',
-    'results.months': 'maanden',
+    'calc.paidPerMonth': 'Betaald per maand = wekelijkse uitgaven × 4,33',
+    'calc.usedValue': 'Gebruikswaarde = betaald × (1 − waste)',
+    'calc.capacity': 'Elke unit vervangt tot €400/maand aan gebruikswaarde',
+    'calc.proportionalAvoided': 'Vermeden kosten zijn proportioneel aan wat je vervangt (op basis van gebruikswaarde)',
+    'calc.operatingCost': 'Kosten = care plan + elektriciteit + arbeid',
 
     'testimonials.title': 'Wat chefs zeggen',
     'testimonial.1': '“We bestellen minder en gooien bijna niets meer weg. Daar zit het verschil.”',
@@ -218,7 +215,6 @@ const translations: Record<Language, Record<string, string>> = {
   de: {
     'nav.bookCall': 'Call buchen',
     'nav.savingsGuide': 'Savings Guide erhalten',
-
     'cta.bookCall': 'Call buchen',
     'cta.savingsGuide': 'Savings Guide erhalten',
 
@@ -271,9 +267,11 @@ const translations: Record<Language, Record<string, string>> = {
     'results.netSavings': 'Netto-Ersparnis',
     'results.perMonth': '/ Monat',
     'results.payback': 'Amortisation',
+    'results.month': 'Monat',
+    'results.months': 'Monate',
     'results.noPayback': 'Keine Amortisation',
     'results.paybackLessThan1': '< 1 Monat',
-    'results.paybackValue': '{months}',
+
     'results.unitsNeeded': 'Benötigte MiniGros',
     'results.unitsLine': 'Einheiten: {units} MiniGros',
     'results.unitsManualLine': 'Einheiten: {units} MiniGros (manuell)',
@@ -287,9 +285,8 @@ const translations: Record<Language, Record<string, string>> = {
 
     'results.youPayPerMonth': 'Sie zahlen pro Monat',
     'results.youUseAfterWaste': 'Sie nutzen tatsächlich (nach Abfall)',
-    'results.operatingCost': 'Monatliche Kosten',
     'results.operatingCostForUnits': 'Monatliche Kosten (für {units} Einheiten)',
-    'results.weeklyTimes433': 'Wöchentliche Ausgaben × 4,33',
+    'results.weeklyTimes433': 'Wochenausgaben × 4,33',
 
     'results.details': 'Details',
     'results.replacesValue': 'Ersetzt {value} Ihres aktuellen Verbrauchs.',
@@ -300,8 +297,11 @@ const translations: Record<Language, Record<string, string>> = {
     'results.footerVat': 'Alle Beträge exkl. MwSt.',
     'results.footerEstimate': 'Schätzungen hängen von Anbaumix und Küchenworkflow ab.',
 
-    'results.month': 'Monat',
-    'results.months': 'Monate',
+    'calc.paidPerMonth': 'Bezahlt pro Monat = Wochenausgaben × 4,33',
+    'calc.usedValue': 'Nutzwert = bezahlt × (1 − Abfall)',
+    'calc.capacity': 'Jede Einheit ersetzt bis zu €400/Monat an Nutzwert',
+    'calc.proportionalAvoided': 'Eingesparte Ausgaben sind proportional zu dem, was ersetzt wird (basierend auf Nutzwert)',
+    'calc.operatingCost': 'Kosten = Care-Plan + Strom + Arbeit',
 
     'testimonials.title': 'Was Küchen sagen',
     'testimonial.1': '“Wir bestellen weniger und werfen kaum noch etwas weg. Das macht den Unterschied.”',
