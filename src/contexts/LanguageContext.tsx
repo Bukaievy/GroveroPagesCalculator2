@@ -78,6 +78,7 @@ const translations: Record<Language, Record<string, string>> = {
     'results.unitsLine': 'Units: {units} MiniGros',
     'results.unitsManualLine': 'Units: {units} MiniGros (manual)',
     'results.coverage': 'Coverage: {coverage}',
+  
 
     'results.modeBestPayback': 'Best payback',
     'results.modeFullCoverage': 'Full coverage',
@@ -99,6 +100,9 @@ const translations: Record<Language, Record<string, string>> = {
 
     'results.footerVat': 'All amounts exclude VAT.',
     'results.footerEstimate': 'Estimates depend on crop mix and kitchen workflow.',
+
+    'results.month': 'month',
+    'results.months': 'months',
 
     // TESTIMONIALS
     'testimonials.title': 'What chefs say',
@@ -187,6 +191,7 @@ const translations: Record<Language, Record<string, string>> = {
     'results.operatingCost': 'Maandelijkse kosten',
     'results.operatingCostForUnits': 'Maandelijkse kosten (voor {units} units)',
     'results.weeklyTimes433': 'Wekelijkse uitgaven × 4,33',
+  
 
     'results.details': 'Details',
     'results.replacesValue': 'Vervangt {value} van je huidige gebruik.',
@@ -196,6 +201,9 @@ const translations: Record<Language, Record<string, string>> = {
 
     'results.footerVat': 'Alle bedragen zijn excl. btw.',
     'results.footerEstimate': 'Schattingen hangen af van teeltmix en keukenworkflow.',
+
+    'results.month': 'maand',
+    'results.months': 'maanden',
 
     'testimonials.title': 'Wat chefs zeggen',
     'testimonial.1': '“We bestellen minder en gooien bijna niets meer weg. Daar zit het verschil.”',
@@ -291,6 +299,9 @@ const translations: Record<Language, Record<string, string>> = {
 
     'results.footerVat': 'Alle Beträge exkl. MwSt.',
     'results.footerEstimate': 'Schätzungen hängen von Anbaumix und Küchenworkflow ab.',
+
+    'results.month': 'Monat',
+    'results.months': 'Monate',
 
     'testimonials.title': 'Was Küchen sagen',
     'testimonial.1': '“Wir bestellen weniger und werfen kaum noch etwas weg. Das macht den Unterschied.”',
