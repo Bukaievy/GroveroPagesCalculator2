@@ -55,56 +55,42 @@ export function useCalculator() {
       : PRESETS[inputs.preset as keyof typeof PRESETS].minutes;
 
   const results = useMemo(() => {
-    const paidSpendPerMonth =
-      Math.max(0, inputs.weeklySpend) * WEEKS_PER_MONTH;
+    const weeklySpend = Math.max(0, inputs.weeklySpend);
 
-    const usedValuePerMonth =
-      paidSpendPerMonth * (1 - effectiveWaste / 100);
+    const paidSpendPerMonth = weeklySpend * WEEKS_PER_MONTH;
+    const usedValuePerMonth = paidSpendPerMonth * (1 - effectiveWaste / 100);
 
     const unitsFull =
-      usedValuePerMonth > 0
-        ? Math.ceil(usedValuePerMonth / UNIT_CAPACITY)
-        : 0;
+      usedValuePerMonth > 0 ? Math.ceil(usedValuePerMonth / UNIT_CAPACITY) : 0;
 
     const planCostPerUnit = inputs.carePlanOn ? CARE_PLAN_COST : 0;
 
     const labourCostPerUnit =
-      (Math.max(0, effectiveMinutes) *
-        WEEKS_PER_MONTH /
-        60) *
+      (Math.max(0, effectiveMinutes) * WEEKS_PER_MONTH / 60) *
       Math.max(0, inputs.labourCostPerHour);
 
-    const electricityCostPerUnit =
-      Math.max(0, inputs.electricityPerMonthPerUnit);
+    const electricityCostPerUnit = Math.max(0, inputs.electricityPerMonthPerUnit);
 
-    const perUnitOperatingCost =
-      planCostPerUnit + labourCostPerUnit + electricityCostPerUnit;
+    const perUnitOperatingCost = planCostPerUnit + labourCostPerUnit + electricityCostPerUnit;
 
     function compute(u: number) {
-      const replaced = Math.min(
-        usedValuePerMonth,
-        u * UNIT_CAPACITY,
-      );
+      const replaced = Math.min(usedValuePerMonth, u * UNIT_CAPACITY);
 
       const avoided =
-        usedValuePerMonth > 0
-          ? paidSpendPerMonth * (replaced / usedValuePerMonth)
-          : 0;
+        usedValuePerMonth > 0 ? paidSpendPerMonth * (replaced / usedValuePerMonth) : 0;
 
       const operating = u * perUnitOperatingCost;
       const savings = avoided - operating;
-      const capex = u * inputs.purchasePricePerUnit;
-      const roi =
-        savings > 0 ? capex / savings : null;
 
-      const coverage =
-        usedValuePerMonth > 0
-          ? replaced / usedValuePerMonth
-          : 0;
+      const capex = u * inputs.purchasePricePerUnit;
+      const roi = savings > 0 ? capex / savings : null;
+
+      const coverage = usedValuePerMonth > 0 ? replaced / usedValuePerMonth : 0;
 
       return { savings, roi, coverage };
     }
 
+    // Best payback (subject to minimum coverage)
     let unitsBestPayback = 0;
 
     if (usedValuePerMonth > 0) {
@@ -126,36 +112,28 @@ export function useCalculator() {
     }
 
     const unitsRecommended =
-      recommendationMode === 'best_payback'
-        ? unitsBestPayback
-        : unitsFull;
+      recommendationMode === 'best_payback' ? unitsBestPayback : unitsFull;
 
-    const units =
-      inputs.unitsOverride ?? unitsRecommended;
+    const units = inputs.unitsOverride ?? unitsRecommended;
 
-    const replaced = Math.min(
-      usedValuePerMonth,
-      units * UNIT_CAPACITY,
-    );
+    const maxReplacedValue = Math.min(usedValuePerMonth, units * UNIT_CAPACITY);
 
-    const avoided =
-      usedValuePerMonth > 0
-        ? paidSpendPerMonth * (replaced / usedValuePerMonth)
-        : 0;
+    const avoidedSpend =
+      usedValuePerMonth > 0 ? paidSpendPerMonth * (maxReplacedValue / usedValuePerMonth) : 0;
 
-    const operatingCostPerMonth =
-      units * perUnitOperatingCost;
+    // Breakdown totals (needed for Details)
+    const carePlanCostTotal = units * planCostPerUnit;
+    const electricityCostTotal = units * electricityCostPerUnit;
+    const labourCostTotal = units * labourCostPerUnit;
 
-    const savingsPerMonth =
-      avoided - operatingCostPerMonth;
+    const operatingCostPerMonth = carePlanCostTotal + electricityCostTotal + labourCostTotal;
 
-    const capexTotal =
-      units * inputs.purchasePricePerUnit;
+    const savingsPerMonth = avoidedSpend - operatingCostPerMonth;
+    const capexTotal = units * inputs.purchasePricePerUnit;
 
-    const roiMonths =
-      savingsPerMonth > 0
-        ? capexTotal / savingsPerMonth
-        : null;
+    const roiMonths = savingsPerMonth > 0 ? capexTotal / savingsPerMonth : null;
+
+    const coverage = usedValuePerMonth > 0 ? maxReplacedValue / usedValuePerMonth : 0;
 
     return {
       paidSpendPerMonth,
@@ -163,49 +141,46 @@ export function useCalculator() {
       unitsRecommended,
       unitsFull,
       unitsBestPayback,
-      maxReplacedValue: replaced,
-      avoidedSpend: avoided,
+
+      maxReplacedValue,
+      avoidedSpend,
+
+      carePlanCostTotal,
+      electricityCostTotal,
+      labourCostTotal,
       operatingCostPerMonth,
+
       savingsPerMonth,
       savingsPerYear: savingsPerMonth * 12,
+
       capexTotal,
       roiMonths,
-      coverage:
-        usedValuePerMonth > 0
-          ? replaced / usedValuePerMonth
-          : 0,
-      spareCapacityValue: Math.max(
-        0,
-        units * UNIT_CAPACITY - usedValuePerMonth,
-      ),
+
+      coverage,
+      spareCapacityValue: Math.max(0, units * UNIT_CAPACITY - usedValuePerMonth),
     };
   }, [inputs, effectiveWaste, effectiveMinutes, recommendationMode]);
 
-  const updateInput = useCallback(
-    (key: keyof CalculatorInputs, value: any) => {
-      setInputs(prev => {
-        const next = { ...prev, [key]: value };
+  const updateInput = useCallback((key: keyof CalculatorInputs, value: any) => {
+    setInputs(prev => {
+      const next = { ...prev, [key]: value };
 
-        if (key === 'preset' && value !== 'custom') {
-          const preset =
-            PRESETS[value as keyof typeof PRESETS];
-          next.wastePercent = preset.waste;
-          next.minutesPerWeekPerUnit = preset.minutes;
-        }
+      if (key === 'preset' && value !== 'custom') {
+        const preset = PRESETS[value as keyof typeof PRESETS];
+        next.wastePercent = preset.waste;
+        next.minutesPerWeekPerUnit = preset.minutes;
+      }
 
-        return next;
-      });
-    },
-    [],
-  );
+      return next;
+    });
+  }, []);
 
   const resetToDefaults = () => {
     setInputs(DEFAULT_INPUTS);
     setRecommendationMode('best_payback');
   };
 
-  const unitsModeled =
-    inputs.unitsOverride ?? results.unitsRecommended;
+  const unitsModeled = inputs.unitsOverride ?? results.unitsRecommended;
 
   return {
     inputs,
@@ -217,5 +192,8 @@ export function useCalculator() {
     unitsModeled,
     effectiveWaste,
     effectiveMinutes,
+
+    // keep this for existing props usage
+    purchasePrice: inputs.purchasePricePerUnit,
   };
 }
