@@ -102,10 +102,10 @@ const translations: Record<Language, Record<string, string>> = {
     'calc.operatingCost': 'Operating cost = care plan + electricity + labour',
 
     'testimonials.title': 'What chefs say',
-    'testimonial.1': '“We order less and hardly throw anything away anymore. That’s where the cost difference comes from.”',
-    'testimonial.1.author': 'Restaurant owner (Amsterdam)',
-    'testimonial.2': '“Harvesting on demand makes service easier. We always have what we need, without waste orders.”',
-    'testimonial.2.author': 'Chef (The Hague)',
+    'testimonial.1': 'We reduced orders and waste. The savings were immediate.',
+    'testimonial.1.author': 'Renata, owner-chef at Elo Food Based (Amsterdam)',
+    'testimonial.2': 'Harvest on demand improved consistency and lowered costs.',
+    'testimonial.2.author': 'Mitchell, chef at Parkoers (The Hague)',
 
     'footer.privacy': 'Privacy',
     'footer.terms': 'Terms',
@@ -203,10 +203,11 @@ const translations: Record<Language, Record<string, string>> = {
     'calc.operatingCost': 'Kosten = care plan + elektriciteit + arbeid',
 
     'testimonials.title': 'Wat chefs zeggen',
-    'testimonial.1': '“We bestellen minder en gooien bijna niets meer weg. Daar zit het verschil.”',
-    'testimonial.1.author': 'Restaurant (Amsterdam)',
-    'testimonial.2': '“Oogsten op aanvraag maakt service makkelijker. Altijd wat je nodig hebt, zonder waste.”',
-    'testimonial.2.author': 'Chef (Den Haag)',
+    'testimonial.1': 'We bestelden minder en hadden minder verspilling. De besparing was meteen merkbaar.',
+    'testimonial.1.author': 'Renata, eigenaar-chef bij Elo Food Based (Amsterdam)',
+    'testimonial.2': 'Oogsten op aanvraag verbeterde de consistentie en verlaagde de kosten.',
+    'testimonial.2.author': 'Mitchell, chef bij Parkoers (Den Haag)',
+
 
     'footer.privacy': 'Privacy',
     'footer.terms': 'Voorwaarden',
@@ -304,10 +305,11 @@ const translations: Record<Language, Record<string, string>> = {
     'calc.operatingCost': 'Kosten = Care-Plan + Strom + Arbeit',
 
     'testimonials.title': 'Was Küchen sagen',
-    'testimonial.1': '“Wir bestellen weniger und werfen kaum noch etwas weg. Das macht den Unterschied.”',
-    'testimonial.1.author': 'Restaurant (Amsterdam)',
-    'testimonial.2': '“Ernten auf Abruf macht den Service leichter. Immer verfügbar, ohne Waste.”',
-    'testimonial.2.author': 'Chef (Den Haag)',
+    'testimonial.1': 'Wir haben weniger bestellt und weniger weggeworfen. Die Einsparungen waren sofort spürbar.',
+    'testimonial.1.author': 'Renata, Inhaberin und Köchin bei Elo Food Based (Amsterdam)',
+    'testimonial.2': 'Ernten nach Bedarf hat die Konsistenz verbessert und die Kosten gesenkt.',
+    'testimonial.2.author': 'Mitchell, Koch bei Parkoers (Den Haag)',
+
 
     'footer.privacy': 'Datenschutz',
     'footer.terms': 'AGB',
