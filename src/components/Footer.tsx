@@ -1,5 +1,4 @@
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'react-router-dom';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -10,27 +9,29 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center">
-            <img
-              src="/logo-grovero.svg"
-              alt="Grovero"
-              className="h-12 w-auto"
-            />
+            <img src="/logo-grovero.svg" alt="Grovero" className="h-8 w-auto" />
           </div>
 
           {/* Links */}
           <div className="flex items-center gap-6 text-sm">
-            <Link
-              to="/privacy"
+            <a
+              href="https://www.grovero.com/privacy-policy/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              {t('footer.privacy')}
-            </Link>
-            <Link
-              to="/terms"
+              {t("footer.privacy")}
+            </a>
+
+            <a
+              href="https://www.grovero.com/terms-and-conditions-of-sale-refunds-terms/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              {t('footer.terms')}
-            </Link>
+              {t("footer.terms")}
+            </a>
+
             <a
               href="mailto:info@grovero.com"
               className="text-muted-foreground hover:text-foreground transition-colors"
