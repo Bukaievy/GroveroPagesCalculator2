@@ -22,7 +22,7 @@ export function Navigation() {
             <img
               src="/logo-grovero.svg"
               alt="Grovero"
-              className="h-8 md:h-10 w-auto"
+              className="h-12 md:h-10 w-auto"
             />
           </a>
 
