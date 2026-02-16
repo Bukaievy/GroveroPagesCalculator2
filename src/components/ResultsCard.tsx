@@ -18,7 +18,7 @@ function formatMonths(value: number | null) {
   return `${rounded} months`;
 }
 
-export default function ResultsCard() {
+export function ResultsCard() {
   const {
     results,
     unitsModeled,
