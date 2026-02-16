@@ -25,9 +25,15 @@ export function ResultsCard({
   const paybackDisplay = (() => {
     if (results.roiMonths !== null) {
       const rounded = Math.round(results.roiMonths * 2) / 2;
+
       if (rounded < 1) return t('results.paybackLessThan1');
-      return t('results.paybackValue').replace('{months}', formatPaybackMonths(results.roiMonths));
+
+      const label =
+        rounded === 1 ? t('results.month') : t('results.months');
+
+      return `${rounded} ${label}`;
     }
+
     return t('results.noPayback');
   })();
 
